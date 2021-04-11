@@ -66,13 +66,6 @@ function IngredientDisplay({ itemName, use, _id }) {
     setInventory(newState);
   }
 
-<<<<<<< HEAD
-  /**
-   * This function will update
-   *
-   */
-=======
->>>>>>> main
   function checkMarked() {
     let boolean;
 
@@ -83,21 +76,11 @@ function IngredientDisplay({ itemName, use, _id }) {
       [itemName]: { itemName: itemName, bucketNumber: inventory[itemName].bucketNumber, use: boolean, _id: _id },
     };
 
-<<<<<<< HEAD
-    console.log(updatedIng);
-
-    // Update database
-    // axios
-    //   .put('api/inventory', updatedIng)
-    //   .then((res) => console.log(`${itemName} with ID:${_id} checkmark: ${boolean}`))
-    //   .catch((e) => console.log(`ERR: ingredient checkmark update is not completed `));
-=======
     // Update database
     axios
       .put('api/inventory', updatedIng)
       .then((res) => console.log(`${itemName} with ID:${_id} checkmark: ${boolean}`))
       .catch((e) => console.log(`ERR: ingredient checkmark update is not completed `));
->>>>>>> main
 
     // Update state
     let newState = { ...inventory, ...updatedIng };
@@ -107,7 +90,6 @@ function IngredientDisplay({ itemName, use, _id }) {
   return (
     <div className="ingredientDisplay" style={{ backgroundColor: color }}>
       {itemName}
-<<<<<<< HEAD
       <input type="checkbox" onChange={(e) => checkMarked(e)} autoComplete="on" />
       <div className="upDownButtons">
         <button className="buttons" onClick={(e) => moveUpOrDown('up')}>
@@ -119,12 +101,6 @@ function IngredientDisplay({ itemName, use, _id }) {
         <button className="buttons" onClick={(e) => deleteIng(e)}>
           X
         </button>
-=======
-      <input type="checkbox" onChange={(e) => checkMarked(e)} />
-      <div>
-        <button onClick={(e) => moveUpOrDown('up')}>Move Up</button>
-        <button onClick={(e) => moveUpOrDown('down')}>Move Down</button>
->>>>>>> main
       </div>
     </div>
   );

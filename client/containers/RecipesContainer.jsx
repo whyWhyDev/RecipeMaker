@@ -1,21 +1,24 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { CardColumns, CardDeck } from 'react-bootstrap';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import RecipeDisplay from '../components/RecipeDisplay';
 import { useRecipe, useSetRecipe } from '../contexts/RecipeContext';
 
 function RecipesContainer() {
   const recipe = useRecipe();
   const setRecipe = useSetRecipe();
+  const inventory = useInventory();
+  if (inventory === null) {
+    return 'loading';
+  }
   useEffect(() => {
     axios
-      .get('./api/recipes')
+      .post('./api/recipes', inventory)
       .then((res) => {
         setRecipe(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [inventory]);
 
   if (recipe === null) {
     return 'Loading...';
